@@ -1,3 +1,5 @@
+# Mis Datos Persnonales
+Nombre: Ariel Santana , Email: ariel.santana@umag.cl
 # Repositorio Capacitaciones Deployment
 En este repositorio se encuentran las carpetas donde podrán subir los dump de las base de datos y los archivos de configuración para el despliegue con Docker
 ## Estructura de carpetas
