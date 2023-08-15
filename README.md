@@ -1,4 +1,5 @@
 # Repositorio Capacitaciones Deployment
+## Dominique Osswald Dinamarca - dominique.osswald@usach.cl
 En este repositorio se encuentran las carpetas donde podrán subir los dump de las base de datos y los archivos de configuración para el despliegue con Docker
 ## Estructura de carpetas
 * Config - Debe contener los archivos de configuración 
