@@ -8,3 +8,7 @@ En este repositorio se encuentran las carpetas donde podrán subir los dump de l
     * Mongodb - Dump de la base de datos en mongodb
     * Postgresql - Dump de la base de datos en postgresql
 * Docker - Debe contener los archivos necesarios para realizar el despliegue mediante docker
+
+# Nombre y correo electrónico
+* Rubén Asencio
+* ruben.asencio@umag.cl
