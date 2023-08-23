@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  mongo-db:
+    image: mongo
+    restart: always 
+    ports:
+      - '27017:27017'
+
+  my-go-app-mongo:
+    image: driques/my-backend-mongo:latest 
+    ports:
+      - "8000:8000"
+    environment:
+      - GO_REST_ENV=dev
+      - GIN_MODE=debug
+      - DB_USER=templategoRESTUser
+      - DB_PASS=admin1234
+      - DB_DB=templategoREST
+      - DB_URL=mongodb://mongo-db:27017
+      - ADDR=0.0.0.0:8000
+      - JWT_KEY=string_largo_unico_por_proyecto
+      - CORS_URLS=http://localhost:3001
+      - LOG_NAME=template-log
+    depends_on:
+      - mongo-db
+
+  my-frontend:
+    image: driques/my-frontend-mongo:latest
+    environment:
+      HOST: 0.0.0.0
+      NUXT_ENV_BACKEND_URL: http://localhost:8000
+    ports:
+      - "3001:3000"
+    depends_on:
+      - my-go-app-mongo
+
