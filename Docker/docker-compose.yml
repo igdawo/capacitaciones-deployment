@@ -1,6 +1,21 @@
 version: '3.8'
 
 services:
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    env_file:
+      - ../Databases/Postgresql/.env.docker
+    healthcheck:
+      test: pg_isready -U alan -d veterinaria_citiaps
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    volumes:
+      - postgresql-data3:/var/lib/postgresql-data3
+    networks:
+      - red1
   api:
     build:
       context: .
@@ -9,20 +24,22 @@ services:
       - 3001:3001
     env_file:
       - ../Config/Backend/.env.docker
+    depends_on:
+      db:
+        condition: service_healthy
     networks:
       - red1
-  db:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: alan
-      POSTGRES_PASSWORD: alan
-      POSTGRES_DB: veterinaria_citiaps
+  front:
+    build:
+      context: .
+      dockerfile: ../Config/Frontend/Dockerfile
     ports:
-      - 5432:5432
+      - 3000:3000
     env_file:
-      - ../Databases/Postgresql/.env.docker
-    volumes:
-      - postgresql-data3:/var/lib/postgresql-data3
+      - ../Config/Frontend/.env.docker
+    depends_on:
+      db:
+        condition: service_healthy
     networks:
       - red1
 networks:
