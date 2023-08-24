@@ -1,6 +1,13 @@
 Nombre: Alan Cristian Curilem Chacón
 Email: alan.curilem@umag.cl
 
+Comandos a ejecutar:
+cd Docker
+docker compose up -d
+zcat ../Databases/Postgresql/veterinaria_citiaps.sql.gz | docker exec -i <nombre-contenedor-postgresql> psql -U alan veterinaria_citiaps
+En Config/Backend/.env.docker POSTGRES_HOST colocar el nombre del contendor de la bd postgresql
+
+
 # Repositorio Capacitaciones Deployment
 En este repositorio se encuentran las carpetas donde podrán subir los dump de las base de datos y los archivos de configuración para el despliegue con Docker
 ## Estructura de carpetas
