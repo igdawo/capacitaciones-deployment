@@ -34,4 +34,5 @@ En este repositorio se encuentran las carpetas donde podrán subir los dump de l
     Como podrán ver no se subió la carpeta dump, sino lo que contenía, por lo que se debe crear la carpeta manualmente y ingresarle veterinaria_citiaps. Si hace directamente el mongorestore en veterinaria_citiaps por alguna razón no funcionara.
 
 Dicho lo anterior ya se puede navegar en la pagina web
-**PD: Solo funciona la pagina web con la base de datos postgresql ya que esta no esta adaptada para el tipo de dato de mongodb.
+PD: Solo funciona la pagina web con la base de datos postgresql ya que esta no esta adaptada para el tipo de dato de mongodb.
+PD: En la carpeta de front revisar la rama hpinochet_v2, la rama hpinochet ignorarla.
