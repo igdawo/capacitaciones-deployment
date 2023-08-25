@@ -28,7 +28,7 @@ services:
     restart: always  
 
   base_de_datos_mongodb:
-    container_name: base_de_mongodb
+    container_name: base_de_datos_mongodb
     image: mongodb_image
     networks:
       - docker-red
