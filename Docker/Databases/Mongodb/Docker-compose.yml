@@ -1,0 +1,14 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:3.6.23 
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./veterinaria_citiaps/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
+      - ./veterinaria_citiaps/Vacuna.bson:/dump/Vacuna.bson
+      - ./veterinaria_citiaps/Vacuna.metadata.json:/dump/Vacuna.metadata.json
+      - ./veterinaria_citiaps/Perro.bson:/dump/Perro.bson
+      - ./veterinaria_citiaps/Perro.metadata.json:/dump/Perro.metadata.json
+      - ./veterinaria_citiaps/Dueño.bson:/dump/Dueño.bson
+      - ./veterinaria_citiaps/Dueño.json:/dump/Dueño.metadata.json

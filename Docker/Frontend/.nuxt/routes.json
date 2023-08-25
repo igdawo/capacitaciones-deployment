@@ -1,0 +1,26 @@
+[
+  {
+    "name": "nuevos",
+    "path": "/nuevos",
+    "component": "C:\\\\Users\\\\Seba\\\\Desktop\\\\cityapps\\\\vistas\\\\capacitaciones-front-nuxt\\\\pages\\\\nuevos.vue",
+    "chunkName": "pages/nuevos"
+  },
+  {
+    "name": "perros",
+    "path": "/perros",
+    "component": "C:\\\\Users\\\\Seba\\\\Desktop\\\\cityapps\\\\vistas\\\\capacitaciones-front-nuxt\\\\pages\\\\perros\\\\index.vue",
+    "chunkName": "pages/perros/index"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\Users\\\\Seba\\\\Desktop\\\\cityapps\\\\vistas\\\\capacitaciones-front-nuxt\\\\pages\\\\index.vue",
+    "chunkName": "pages/index"
+  },
+  {
+    "name": "perros-id",
+    "path": "/perros/:id",
+    "component": "C:\\\\Users\\\\Seba\\\\Desktop\\\\cityapps\\\\vistas\\\\capacitaciones-front-nuxt\\\\pages\\\\perros\\\\_id.vue",
+    "chunkName": "pages/perros/_id"
+  }
+]

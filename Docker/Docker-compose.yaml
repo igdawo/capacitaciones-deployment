@@ -1,0 +1,89 @@
+version: '3'
+
+services:
+  ######################### Bloque para contenedor de backend y BD de posgresql #####################
+  #Comentar el bloque de backend y BD de mongo y descomentar este bloque.
+  #Contenedor para postgres
+  # postgres:
+  #   build:
+  #     context: ./Databases/Postgresql/Veterinaria_backup
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5433:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: admin
+  #     POSTGRES_DB: veterinaria_citiaps
+  #   networks:
+  #     - citibridge
+  # backend:
+  #   build:
+  #     context: ./Backend/Back-psql
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - citibridge
+  #   environment:
+  #     DATABASE_HOST: postgres
+  #     DATABASE_PORT: 5432
+  ###################################################################################################    
+
+  ######################### Bloque para contenedor de backend y BD de mongo #########################
+  #Comentar el bloque de backend y BD de postgresql y descomentar este bloque.
+  #Contenedor para mongo
+  mongodb:
+    image: mongo:3.6.23 
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    volumes:
+      - ./Databases/Mongodb/veterinaria_citiaps/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
+      - ./Databases/Mongodb/veterinaria_citiaps/Vacuna.bson:/dump/Vacuna.bson
+      - ./Databases/Mongodb/veterinaria_citiaps/Vacuna.metadata.json:/dump/Vacuna.metadata.json
+      - ./Databases/Mongodb/veterinaria_citiaps/Perro.bson:/dump/Perro.bson
+      - ./Databases/Mongodb/veterinaria_citiaps/Perro.metadata.json:/dump/Perro.metadata.json
+      - ./Databases/Mongodb/veterinaria_citiaps/Dueño.bson:/dump/Dueño.bson
+      - ./Databases/Mongodb/veterinaria_citiaps/Dueño.json:/dump/Dueño.metadata.json
+    networks:
+      - citibridge
+  backend:
+    build:
+      context: ./Backend/Back-mongodb
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+    networks:
+      - citibridge
+    environment:
+      DATABASE_HOST: mongodb
+      DATABASE_PORT: 27017    
+  ###################################################################################################    
+
+  #Contenedor para frontend
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - citibridge
+
+#red bridge para los componentes
+networks:
+  citibridge:
+    driver: bridge
+
+volumes:
+  postgres_data:

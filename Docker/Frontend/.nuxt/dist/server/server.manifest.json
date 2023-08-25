@@ -1,0 +1,27 @@
+{
+  "entry": "server.js",
+  "files": {
+    "components/dog-all.js": "components/dog-all.js",
+    "components/dog-register.js": "components/dog-register.js",
+    "components/dog-vaccines.js": "components/dog-vaccines.js",
+    "components/nuxt-logo.js": "components/nuxt-logo.js",
+    "components/tutorial.js": "components/tutorial.js",
+    "pages/index.js": "pages/index.js",
+    "pages/nuevos.js": "pages/nuevos.js",
+    "pages/perros/_id.js": "pages/perros/_id.js",
+    "pages/perros/index.js": "pages/perros/index.js",
+    "server.js": "server.js"
+  },
+  "maps": {
+    "components/dog-all.js": "components/dog-all.js.map",
+    "components/dog-register.js": "components/dog-register.js.map",
+    "components/dog-vaccines.js": "components/dog-vaccines.js.map",
+    "components/nuxt-logo.js": "components/nuxt-logo.js.map",
+    "components/tutorial.js": "components/tutorial.js.map",
+    "pages/index.js": "pages/index.js.map",
+    "pages/nuevos.js": "pages/nuevos.js.map",
+    "pages/perros/_id.js": "pages/perros/_id.js.map",
+    "pages/perros/index.js": "pages/perros/index.js.map",
+    "server.js": "server.js.map"
+  }
+}

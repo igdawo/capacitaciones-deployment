@@ -1,0 +1,751 @@
+{
+	"info": {
+		"_postman_id": "28af5580-c9e7-4223-8d1c-5d4209304aea",
+		"name": "Template-GO-REST2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14650127",
+		"_collection_link": "https://solar-sunset-475199.postman.co/workspace/BRI~9c48374a-1237-4d32-959f-45bc7537a165/collection/14650127-28af5580-c9e7-4223-8d1c-5d4209304aea?action=share&source=collection_link&creator=14650127"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Email\":\"usuario2@usach.com\",\n    \"Name\": \"Usuario prueba\",\n\t\"Password\":\"clave1234\",\n    \"Rol\": \"Admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/user/",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"usuario2@usach.com\",\n    \"password\": \"clave1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/auth/login",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/auth/refresh_token",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"auth",
+								"refresh_token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/user/63c16b7dfa5b8755cf3ce7a0",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"user",
+								"63c16b7dfa5b8755cf3ce7a0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/user/",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\": \"UsuarioUpdate\",\n\t\"Password\":\"clave1234\",\n    \"Rol\": \"Admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/user/63c16b7dfa5b8755cf3ce7a0",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"user",
+								"63c16b7dfa5b8755cf3ce7a0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/user/63c16b7dfa5b8755cf3ce7a0",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"user",
+								"63c16b7dfa5b8755cf3ce7a0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dueño",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nombre\": \"Jaime Jaramillo\",\n    \"Sexo\": \"Masculino\",\n    \"Edad\": 59\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/dueno/?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"dueno",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/dueno/64daf9c2ab3e6d3853c17530",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"dueno",
+								"64daf9c2ab3e6d3853c17530"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/dueno/",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"dueno",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/dueno/64ddbe38dccb836e55440d74?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"dueno",
+								"64ddbe38dccb836e55440d74"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update General",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nombre\": \"Jaime Jaramillo\",\n    \"Sexo\": \"Masculino\",\n    \"Edad\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/dueno/general/?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"dueno",
+								"general",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nombre\": \"Jaime Jaramillo\",\n    \"Sexo\": \"Masculino\",\n    \"Edad\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/dueno/64daf9c2ab3e6d3853c17530?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"dueno",
+								"64daf9c2ab3e6d3853c17530"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Perro",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nombre\": \"Pelon\",\n    \"Raza\": \"Bulldog\",\n    \"Color\": \"Negro\",\n    \"Edad\": 5,\n    \"Dueño_id\": \"64daf9c2ab3e6d3853c17530\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/perro/?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"perro",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get vacunas by perro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/perro/vacunas/64dafe36ab3e6d3853c17545",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"perro",
+								"vacunas",
+								"64dafe36ab3e6d3853c17545"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get dueño by perro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/perro/dueno/64dafe36ab3e6d3853c17545",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"perro",
+								"dueno",
+								"64dafe36ab3e6d3853c17545"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/perro/64dafe36ab3e6d3853c17545",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"perro",
+								"64dafe36ab3e6d3853c17545"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/perro/",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"perro",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/perro/64dfeb3ae4812f5036da7052?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"perro",
+								"64dfeb3ae4812f5036da7052"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update General",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nombre\": \"quilterrier\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/perro/general/?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"perro",
+								"general",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Nombre\": \"Pelon\",\n    \"Raza\": \"Bulldog\",\n    \"Color\": \"Negro\",\n    \"Edad\": 5,\n    \"Dueño_id\": \"64daf9c2ab3e6d3853c17530\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/perro/64dfedcfff3eb9c59660b64c?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"perro",
+								"64dfedcfff3eb9c59660b64c"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vacuna",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"NombreVacuna\": \"Octuple\",\n        \"Perro_id\": \"64daff0fab3e6d3853c1754c\",\n        \"Fecha\": \"2023-04-04T00:00:00Z\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/vacuna/?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"vacuna",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/vacuna/64dff1587cb4be4bedffcd37",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"vacuna",
+								"64dff1587cb4be4bedffcd37"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/vacuna/",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"vacuna",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/vacuna/64dff1587cb4be4bedffcd37?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"vacuna",
+								"64dff1587cb4be4bedffcd37"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update General",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"NombreVacuna\": \"Octuple\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/vacuna/general/?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"vacuna",
+								"general",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"NombreVacuna\": \"Octuple\",\n    \"Perro_id\": \"64daff0fab3e6d3853c1754c\",\n    \"Fecha\": \"2023-04-04T00:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/vacuna/64dff1587cb4be4bedffcd37?token=",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"vacuna",
+								"64dff1587cb4be4bedffcd37"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "address",
+			"value": "localhost:8001",
+			"type": "string"
+		}
+	]
+}
