@@ -1,0 +1,41 @@
+version: "3.3"
+services:
+  frontend:
+    container_name: frontend
+    image: frontend_image
+    networks:
+      - docker-red
+    ports:
+      - 3000:3000  
+    restart: always
+
+  backend: 
+    container_name: backend
+    image: backend_image
+    networks:
+      - docker-red
+    ports:
+      - 8000:8000  
+    restart: always
+
+  base_de_datos_postgres:
+    container_name: base_de_datos_postgres
+    image: postgresql_image
+    networks:
+      - docker-red
+    ports:
+      - 5432:5432
+    restart: always  
+
+  base_de_datos_mongodb:
+    container_name: base_de_mongodb
+    image: mongodb_image
+    networks:
+      - docker-red
+    ports:
+      - 27017:27017  
+    restart: always  
+
+networks:
+  docker-red:
+    driver: bridge
