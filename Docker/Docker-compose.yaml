@@ -1,0 +1,99 @@
+version: '3'
+
+services:
+
+#----------------Bloque para MongoDB-------------------
+  mongodb:
+    image: mongo:3.6.23 
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    volumes:
+      - ./Databases/MongoDB/veterinaria_citiaps/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
+      - ./Databases/MongoDB/veterinaria_citiaps/Vacuna.bson:/dump/Vacuna.bson
+      - ./Databases/MongoDB/veterinaria_citiaps/Vacuna.metadata.json:/dump/Vacuna.metadata.json
+      - ./Databases/MongoDB/veterinaria_citiaps/Perro.bson:/dump/Perro.bson
+      - ./Databases/MongoDB/veterinaria_citiaps/Perro.metadata.json:/dump/Perro.metadata.json
+      - ./Databases/MongoDB/veterinaria_citiaps/Dueño.bson:/dump/Dueño.bson
+      - ./Databases/MongoDB/veterinaria_citiaps/Dueño.json:/dump/Dueño.metadata.json
+    networks:
+      - node-network
+
+  backend-mongo:
+    build:
+      context: ./Backend/BackendMongo
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+    networks:
+      - node-network
+    environment:
+      DATABASE_HOST: mongodb
+      DATABASE_PORT: 27017    
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend_mongo
+    networks:
+      - node-network
+
+#----------------Bloque para PostgreSQL-------------------
+
+#Backend de postgreSQL
+#   postgres:
+#    build:
+#      context: ./Databases/PostgreSQL
+#      dockerfile: Dockerfile
+#    ports:
+#      - "5433:5432"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: admin
+#      POSTGRES_DB: veterinaria_citiaps
+#    networks:
+#      - node-network
+
+#   backend_postgres:
+#    build:
+#      context: ./Backend/BackendPostgres
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8000:8000"
+#    depends_on:
+#      - postgres
+#    networks:
+#      - node-network
+#    environment:
+#      DATABASE_HOST: postgres
+#      DATABASE_PORT: 5432
+
+#   frontend:
+#     build:
+#       context: ./Frontend
+#       dockerfile: Dockerfile
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - backend_postgres
+#     networks:
+#       - node-network
+# volumes:
+#   postgres_data:
+
+
+
+#-----------Red de conexiones---------------------------------------------
+networks:
+  node-network:
+    driver: bridge
