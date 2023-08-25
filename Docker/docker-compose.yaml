@@ -1,0 +1,48 @@
+services:
+  #Contenedor de postgres
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+
+  #Contenedor de mongo
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+
+  #Contenedor backendpostgresql
+  backendpg:
+    build:
+      context: ./Docker/Backend/BackendPostgres
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    env_file:
+      - ./Config/Backend/Postgresql/.env
+
+  #Contenedor backendmongo
+  backendmg:
+    build:
+      context: ./Docker/Backend/BackMongo
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    env_file:
+      - ./Config/Backend/Mongodb/.env
+
+  #Contenedor frontend
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
