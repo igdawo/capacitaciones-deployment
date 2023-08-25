@@ -1,0 +1,55 @@
+version: "3"
+services:
+  frontend:
+    image: hballesterosr/frontend
+    network_mode: host
+    ports:
+     - "3000:3000"
+    restart: on-failure
+    depends_on:
+      - go-mongodb
+    env_file:
+      - ../Config/Frontend/.env
+
+  go-mongodb:
+    image: hballesterosr/backend
+    network_mode: host
+    ports:
+     - "8000:8000"
+    restart: on-failure
+    depends_on:
+      - mongodb
+    env_file:
+      - ../Config/Backend/.env.mg
+
+  go-postgresql:
+    image: hballesterosr/backendpg
+    network_mode: host
+    ports:
+     - "8080:8080"
+    restart: on-failure
+    depends_on:
+      - postgres
+    env_file:
+      - ../Config/Backend/.env.pg
+
+  mongodb:
+    image: hballesterosr/mongo
+    container_name: mi-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+      MONGO_INITDB_DATABASE: veterinaria_citiaps
+    command: ["--auth"]
+
+  postgres:
+    image: hballesterosr/postgres
+    container_name: mi-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: veterinaria_citiaps
