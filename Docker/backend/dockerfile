@@ -1,0 +1,14 @@
+FROM golang:alpine
+
+EXPOSE 8080
+
+# create destination directory
+RUN mkdir -p /usr/src/nuxt-app
+WORKDIR /usr/src/nuxt-app
+
+# copy the app, note .dockerignore
+COPY . /usr/src/nuxt-app/
+
+#RUN go build -o app
+
+CMD ["go", "run", "."]
