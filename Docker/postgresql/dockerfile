@@ -1,0 +1,4 @@
+# Usamos una imagen base de Linux (puede ser Ubuntu, Alpine, etc.)
+FROM postgres
+
+EXPOSE 5432
