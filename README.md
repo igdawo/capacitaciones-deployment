@@ -22,9 +22,11 @@ En este repositorio se encuentran las carpetas donde podrán subir los dump de l
 
 - Tener instalado Docker
 - Tener instalado Docker-compose (viene incluido si se instaló Docker Desktop)
+- Asegurarse de que haya .env con las variables de entorno en ./Config/Backend, para Mongodb y Postgresql como se requiera. Estas carpetas contienen .env de ejemplo como env.example
+- En el archivo docker-compose.yalm se decide cuál backend se va a ocupar. El otro debe quedar comentado y se deben guardar los cambios.
 
 # Despliegue en Windows
 
 - Abrir consola de comandos en el directorio de esta app o donde se encuentre docker-compose.yaml
 - Ejecutar sudo docker-compose up --build -d
-- Ya es posible acceder al frontend desde el navegador dirigiendose a http://localhost:3000/
+- Se generan los contenedores y quedan en ejecución

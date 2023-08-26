@@ -13,17 +13,20 @@ services:
     ports:
       - "27017:27017"
 
+  #Seleccionar un solo backend
+  #Dejar el otro comentado
+
   #Contenedor backendpostgresql
-  backendpg:
-    build:
-      context: ./Docker/Backend/BackendPostgres
-      dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
-    depends_on:
-      - postgres
-    env_file:
-      - ./Config/Backend/Postgresql/.env
+  #backendpg:
+  #  build:
+  #    context: ./Docker/Backend/BackendPostgres
+  #    dockerfile: Dockerfile
+  #  ports:
+  #    - "8000:8000"
+  #  depends_on:
+  #    - postgres
+  #  env_file:
+  #    - ./Config/Backend/Postgresql/.env
 
   #Contenedor backendmongo
   backendmg:
@@ -40,7 +43,7 @@ services:
   #Contenedor frontend
   frontend:
     build:
-      context: ./Frontend
+      context: ./Docker/Frontend
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
