@@ -31,7 +31,7 @@ services:
   #Contenedor backendmongo
   backendmg:
     build:
-      context: ./Docker/Backend/BackMongo
+      context: ./Docker/Backend/BackendMongo
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
@@ -47,5 +47,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - backend
+    env_file:
+      - ./Config/Frontend/.env
