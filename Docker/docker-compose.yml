@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+
+  # Backend
+  backend:
+    image: felipegomezobreque/backend_veterinaria_citiaps
+    container_name: backend-golang
+    ports:
+      - "8000:8000"  # Mapeo del puerto del contenedor al host
+    environment:
+      - DB_URL=mongo:27017  # Nombre del servicio de MongoDB en la red
+
+  # Frontend
+  frontend:
+    image: felipegomezobreque/frontend_veterinaria_citiaps
+    container_name: frontend-vue
+    ports:
+      - "3000:3000"  # Mapeo del puerto del contenedor al host
+    environment:
+      - BACK_URL=backend:8000  # Nombre del servicio de MongoDB en la red
+
+  # MongoDB
+  mongo:
+    image: felipegomezobreque/mongo_veterinaria_citiaps
+    container_name: bd-mongo
+    ports:
+      - "27017:27017"  # Mapeo del puerto del contenedor al host
