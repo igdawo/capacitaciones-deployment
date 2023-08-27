@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+
+  # Backend
+  backend:
+    image: felipegomezobreque/backendPostGres_veterinaria_citiaps
+    container_name: backendPostgres-golang
+    ports:
+      - "8000:8000"  # Mapeo del puerto del contenedor al host
+    environment:
+      - DB_URL=postgres:5432  # Nombre del servicio de MongoDB en la red
+
+  # Frontend
+  frontend:
+    image: felipegomezobreque/frontend_veterinaria_citiaps
+    container_name: frontendPostgres-vue
+    ports:
+      - "3000:3000"  # Mapeo del puerto del contenedor al host
+    environment:
+      - BACK_URL=backend:8000  # Nombre del servicio de MongoDB en la red
+
+  # Postgresql
+  postgres:
+    image: felipegomezobreque/postgres_veterinaria_citiaps
+    container_name: bd-postgres
+    ports:
+      - "5432:5432"  # Mapeo del puerto del contenedor al host

@@ -5,7 +5,7 @@ services:
   # Backend
   backend:
     image: felipegomezobreque/backend_veterinaria_citiaps
-    container_name: backend-golang
+    container_name: backendMongo-golang
     ports:
       - "8000:8000"  # Mapeo del puerto del contenedor al host
     environment:

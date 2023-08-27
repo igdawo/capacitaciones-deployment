@@ -1,0 +1,1 @@
+psql --username=user --dbname=veterinaria_citiaps < backup.sql

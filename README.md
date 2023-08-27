@@ -12,3 +12,17 @@ En este repositorio se encuentran las carpetas donde podrán subir los dump de l
 
 Felipe Gómez Obreque
 felipe.gomez.o@usach.cl
+
+Pasos para el despliegue:
+
+1) Abrir una consola en la carpeta /Docker
+2) Escribir el comando docker-compose up -d
+
+Con eso correra el contenedor de back, front y bd con las imagenes que se encuentran en mi repositorio de dockerhub.
+
+* Las imagenes de las bases de datos contienen los datos del respaldo.
+
+Luego se puede interactuar desde el navegador con la app usando el link:
+localhost:3000
+
+* Si se usa chrome se debe agregar la extensión: Moesif Orign & CORS Changer y asegurar que esté en estado ON para que backend y frontend puedan interactuar bien.
