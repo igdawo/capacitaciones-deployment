@@ -17,12 +17,14 @@ Pasos para el despliegue:
 
 1) Abrir una consola en la carpeta /Docker
 2) Escribir el comando docker-compose up -d
+3) Se puede interactuar desde el navegador con la app usando el link:
+localhost:3000
 
 Con eso correra el contenedor de back, front y bd con las imagenes que se encuentran en mi repositorio de dockerhub.
 
-* Las imagenes de las bases de datos contienen los datos del respaldo.
+NOTAS: 
+	* Las imagenes de las bases de datos contienen los datos del respaldo.
 
-Luego se puede interactuar desde el navegador con la app usando el link:
-localhost:3000
+	* Si se usa chrome se debe agregar la extensión: Moesif Orign & CORS Changer y asegurar que esté en estado ON para que backend y frontend puedan interactuar bien.
 
-* Si se usa chrome se debe agregar la extensión: Moesif Orign & CORS Changer y asegurar que esté en estado ON para que backend y frontend puedan interactuar bien.
+	* Tuve que usar puerto 5430 para base de datos sql porque no podía desde 5432, se puede 	cambiar desde docker-compose de ser necesario.

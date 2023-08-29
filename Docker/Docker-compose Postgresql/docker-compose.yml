@@ -4,16 +4,17 @@ services:
 
   # Backend
   backend:
-    image: felipegomezobreque/backendPostGres_veterinaria_citiaps
+    image: felipegomezobreque/backendsql_veterinaria_citiaps
     container_name: backendPostgres-golang
     ports:
       - "8000:8000"  # Mapeo del puerto del contenedor al host
     environment:
-      - DB_URL=postgres:5432  # Nombre del servicio de MongoDB en la red
+      - DB_HOST=postgres  # Nombre del servicio de MongoDB en la red
+      - DB_PORT=5432  # Nombre del servicio de MongoDB en la red
 
   # Frontend
   frontend:
-    image: felipegomezobreque/frontend_veterinaria_citiaps
+    image: felipegomezobreque/frontendsql_veterinaria_citiaps
     container_name: frontendPostgres-vue
     ports:
       - "3000:3000"  # Mapeo del puerto del contenedor al host
@@ -25,4 +26,4 @@ services:
     image: felipegomezobreque/postgres_veterinaria_citiaps
     container_name: bd-postgres
     ports:
-      - "5432:5432"  # Mapeo del puerto del contenedor al host
+      - "5430:5432"  # Mapeo del puerto del contenedor al host

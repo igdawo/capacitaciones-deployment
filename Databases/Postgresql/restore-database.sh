@@ -1,1 +1,1 @@
-psql --username=user --dbname=veterinaria_citiaps < backup.sql
+psql --username=user --dbname=veterinaria_citiaps < veterinaria_citiaps.sql
