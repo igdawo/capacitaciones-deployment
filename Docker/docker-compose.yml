@@ -1,0 +1,52 @@
+version: '3.8'
+ 
+services:
+  db:
+    build:
+      context: ../Databases/Postgresql
+      dockerfile: DockerFile
+    image: postgres:latest
+    ports:
+      - 5433:5432
+    env_file:
+      - ../Databases/Postgresql/.env
+    volumes:
+      - postgresql-data:/var/lib/postgresql-data
+  backend:
+    build:
+     #Donde se encuentra el backend en mi docker  y su archivo de iniciación dockerfile
+      context: ../Config/Backend/ 
+      dockerfile: Dockerfile
+      args:
+      #Token de github  y la rama que deseo hacer clone
+        GITHUB_TOKEN: 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 
+        BRANCH: asalinas-postgresql
+    ports:
+    #Puerto 
+      - 3001:3001
+    env_file:
+      - ../Config/Backend/.env
+    depends_on:
+      - db
+  frontend:
+    build:
+     #Donde se encuentra el frontend en mi docker  y su archivo de iniciación dockerfile
+      context: ../Config/Frontend/ 
+      dockerfile: Dockerfile
+      args:
+      #Token de github  y la rama que deseo hacer clone
+        GITHUB_TOKEN: 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 
+        BRANCH: asalinas
+    ports:
+    #Puerto 
+      - 3000:3000
+    env_file:
+      - ../Config/Frontend/.env
+
+volumes:
+  postgresql-data:
+ 
+networks:
+  default:
+    name: red1
+ 
