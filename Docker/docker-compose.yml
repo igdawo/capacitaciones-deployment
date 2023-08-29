@@ -14,15 +14,12 @@ services:
       - postgresql-data:/var/lib/postgresql-data
   backend:
     build:
-     #Donde se encuentra el backend en mi docker  y su archivo de iniciación dockerfile
       context: ../Config/Backend/ 
       dockerfile: Dockerfile
       args:
-      #Token de github  y la rama que deseo hacer clone
-        GITHUB_TOKEN: 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 
+        GITHUB_TOKEN: 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
         BRANCH: asalinas-postgresql
-    ports:
-    #Puerto 
+    ports: 
       - 3001:3001
     env_file:
       - ../Config/Backend/.env
@@ -30,15 +27,12 @@ services:
       - db
   frontend:
     build:
-     #Donde se encuentra el frontend en mi docker  y su archivo de iniciación dockerfile
       context: ../Config/Frontend/ 
       dockerfile: Dockerfile
       args:
-      #Token de github  y la rama que deseo hacer clone
-        GITHUB_TOKEN: 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 
+        GITHUB_TOKEN: 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
         BRANCH: asalinas
     ports:
-    #Puerto 
       - 3000:3000
     env_file:
       - ../Config/Frontend/.env
