@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  db:
+    build:
+      context: ../Databases/Postgresql
+      dockerfile: Dockerfile
+    image: postgres:latest
+    ports:
+      - 5433:5432
+    env_file:
+      - ../Databases/Postgresql/.env
+    volumes:
+      - postgresql-data:/var/lib/postgresql-data
+  # mongo:
+  #   build:
+  #     context: ../Databases/Mongodb
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 27018:27017
+  #   env_file:
+  #     - ../Databases/Mongodb/.env
+  #   volumes:
+  #     - mongodb-data:/data/db
+  api:
+    build:
+      context: ../Config/Backend
+      dockerfile: Dockerfile
+      args:
+        GITHUB_TOKEN: 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
+        BRANCH: fmiranda-postgresql
+    env_file:
+      - ../Config/Backend/.env
+    ports:
+      - 3001:3001
+    depends_on:
+      - db
+      #  - mongo
+  front:
+    build:
+      context: ../Config/Frontend
+      dockerfile: Dockerfile
+      args:
+        GITHUB_TOKEN: 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
+        BRANCH: fmiranda
+    env_file:
+      - ../Config/Frontend/.env
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
+volumes:
+  postgresql-data:
+  # mongodb-data:
+
+networks:
+  default:
+    name: red1
