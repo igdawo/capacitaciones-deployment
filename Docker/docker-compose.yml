@@ -27,7 +27,7 @@ services:
       context: ../Config/Backend
       dockerfile: Dockerfile
       args:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: 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
         BRANCH: fmiranda-postgresql
     env_file:
       - ../Config/Backend/.env
@@ -41,10 +41,11 @@ services:
       context: ../Config/Frontend
       dockerfile: Dockerfile
       args:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: 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
         BRANCH: fmiranda
-    env_file:
-      - ../Config/Frontend/.env
+    environment:
+      - HOST=0.0.0.0
+      - BACK_URL=http://api:3001
     ports:
       - 3000:3000
     depends_on:
