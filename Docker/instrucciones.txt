@@ -1,18 +1,19 @@
 INSTRUCCIONES PARA DESPLEGAR LA APPLICACION CON DOCKER
 
-Desde el directorio de trabajo, clonar con GIT los siguientes repositorios, usando los siguientes comandos:
+- Desde el directorio de trabajo, clonar con GIT los siguientes repositorios, usando los siguientes comandos:
 
->git clone --branch asantana-postgresql https://github.com/citiaps/capacitaciones-back-go.git
->git clone --branch asantana https://github.com/citiaps/capacitaciones-front-nuxt.git
->git clone --branch asantana https://github.com/citiaps/capacitaciones-deployment.git
+git clone --branch asantana-postgresql https://github.com/citiaps/capacitaciones-back-go.git
+git clone --branch asantana https://github.com/citiaps/capacitaciones-front-nuxt.git
+git clone --branch asantana https://github.com/citiaps/capacitaciones-deployment.git
 
-Posicionarse en el siguiente directorio:
+- Renombrar el siguiente archivo:
+mv capacitaciones-back-go/.env.example capacitaciones-back-go/.env
 
->cd capacitaciones-deployment/Docker/
+- Posicionarse en el siguiente directorio:
+cd capacitaciones-deployment/Docker/
 
-Ejectar el siguiente comando docker:
->docker compose up
+- Ejectar el siguiente comando docker:
+docker compose up
 
-Una vez que haya levantado todos los sistemas, abrir un navegador y colocar en la barra de direcciones:
-
+- Una vez que haya levantado todos los sistemas, abrir un navegador y colocar en la barra de direcciones:
 http://localhost:3000
