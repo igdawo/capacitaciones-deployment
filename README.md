@@ -8,7 +8,8 @@ En este repositorio se encuentran las carpetas donde podrán subir los dump de l
     * Mongodb - Dump de la base de datos en mongodb
     * Postgresql - Dump de la base de datos en postgresql
 * Docker - Debe contener los archivos necesarios para realizar el despliegue mediante docker
-##INSTRUCCIONES PARA DESPLEGAR LA APPLICACION CON DOCKER
+
+##Instruccioner para deplegar proyecto
 
 - Desde el directorio de trabajo, clonar con GIT los siguientes repositorios, usando los siguientes comandos:
 ```bash
