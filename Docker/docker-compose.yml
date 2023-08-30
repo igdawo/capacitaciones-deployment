@@ -1,0 +1,60 @@
+version: "1"
+services:
+  pgdb:
+    image: postgres:15.4
+    container_name: pgdb
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_PASSWORD=usi153
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+    networks:
+      - tareanet
+  back:
+    build: ../../capacitaciones-back-go
+    container_name: back
+    ports:
+      - "8000:8000"
+    depends_on:
+      - pgdb
+    environment:
+      - GO_REST_ENV=dev
+      - GIN_MODE=debug
+      - DB_USER= 
+      - DB_PASS= 
+      - DB_DB= 
+      - DB_URL= 
+      - DB_USER_POSTGRES=postgres
+      - DB_PASS_POSTGRES=usi153
+      - DB_DB_POSTGRES=veterinaria_citiaps
+      - DB_HOST_POSTGRES=pgdb
+      - DB_PORT_POSTGRES=5432
+      - ADDR=back:8000
+      - JWT_KEY=98765432123456789
+      - CORS_URLS=http://front:8000,http://localhost:3000
+      - LOG_NAME=template-log
+    networks:
+      - tareanet
+    volumes:
+      - ../../capacitaciones-back-go/uploads:/app/uploads
+  front:
+    build:
+      context: ../../capacitaciones-front-nuxt
+      args:
+        BACK_URL: http://localhost:8000
+    container_name: front
+    ports:
+      - "3000:3000"
+    depends_on:
+      - back
+    environment:
+      - BACK_URL=http://localhost:8000
+    networks:
+      - tareanet
+networks:
+  tareanet:
+    driver: bridge
+volumes:
+  pgdata:
