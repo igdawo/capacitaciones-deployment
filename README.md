@@ -20,7 +20,7 @@ git clone --branch asantana https://github.com/citiaps/capacitaciones-deployment
 
 - Renombrar el siguiente archivo:
 ```bash
-mv capacitaciones-back-go/.env.example capacitaciones-back-go/.env
+mv capacitaciones-front-nuxt/.env.example capacitaciones-front-nuxt/.env
 ```
 - Posicionarse en el siguiente directorio:
 ```bash
