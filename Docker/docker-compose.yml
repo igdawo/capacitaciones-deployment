@@ -17,8 +17,7 @@ services:
       context: ../Config/Backend
       args:
         BRANCH: asantana-postgresql
-        #github_username: asantanac
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
     container_name: back
     ports:
       - "8000:8000"
@@ -49,8 +48,7 @@ services:
       context: ../Config/Frontend
       args:
         BRANCH: asantana
-        #github_username: asantanac
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
         BACK_URL: http://localhost:8000
     container_name: front
     ports:

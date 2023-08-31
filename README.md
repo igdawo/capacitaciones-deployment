@@ -19,6 +19,8 @@ git clone --branch asantana https://github.com/citiaps/capacitaciones-deployment
 ```bash
 cd capacitaciones-deployment/Docker/
 ```
+- Renombrar el archivo .env.example a .env y agregar el Personal Access Token de Github correspondiente al usuario con privilegios para clonar los respositorios.
+
 - Ejectar el siguiente comando docker:
 ```bash
 docker compose up
