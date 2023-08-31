@@ -14,13 +14,6 @@ En este repositorio se encuentran las carpetas donde podrán subir los dump de l
 - Desde el directorio de trabajo, clonar con GIT los siguientes repositorios, usando los siguientes comandos:
 ```bash
 git clone --branch asantana-postgresql https://github.com/citiaps/capacitaciones-back-go.git
-git clone --branch asantana https://github.com/citiaps/capacitaciones-front-nuxt.git
-git clone --branch asantana https://github.com/citiaps/capacitaciones-deployment.git
-```
-
-- Renombrar el siguiente archivo:
-```bash
-mv capacitaciones-front-nuxt/.env.example capacitaciones-front-nuxt/.env
 ```
 - Posicionarse en el siguiente directorio:
 ```bash

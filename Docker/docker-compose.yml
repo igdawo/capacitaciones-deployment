@@ -9,11 +9,16 @@ services:
       - POSTGRES_PASSWORD=usi153
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ../Databases/Postgresql/db.sql:/docker-entrypoint-initdb.d/db.sql
     networks:
       - tareanet
   back:
-    build: ../../capacitaciones-back-go
+    build:
+      context: ../Config/Backend
+      args:
+        BRANCH: asantana-postgresql
+        #github_username: asantanac
+        GITHUB_TOKEN: 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
     container_name: back
     ports:
       - "8000:8000"
@@ -33,7 +38,7 @@ services:
       - DB_PORT_POSTGRES=5432
       - ADDR=back:8000
       - JWT_KEY=98765432123456789
-      - CORS_URLS=http://front:8000,http://localhost:3000
+      - CORS_URLS=http://front:8000,http://localhost:3000,http://front:3000
       - LOG_NAME=template-log
     networks:
       - tareanet
@@ -41,8 +46,11 @@ services:
       - ../../capacitaciones-back-go/uploads:/app/uploads
   front:
     build:
-      context: ../../capacitaciones-front-nuxt
+      context: ../Config/Frontend
       args:
+        BRANCH: asantana
+        #github_username: asantanac
+        GITHUB_TOKEN: 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
         BACK_URL: http://localhost:8000
     container_name: front
     ports:
