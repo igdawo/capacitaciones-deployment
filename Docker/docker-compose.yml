@@ -18,7 +18,7 @@ services:
       args:
         BRANCH: asantana-postgresql
         #github_username: asantanac
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: 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
     container_name: back
     ports:
       - "8000:8000"
@@ -50,7 +50,7 @@ services:
       args:
         BRANCH: asantana
         #github_username: asantanac
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: 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
         BACK_URL: http://localhost:8000
     container_name: front
     ports:
