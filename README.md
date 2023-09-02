@@ -19,7 +19,8 @@ git clone --branch asantana https://github.com/citiaps/capacitaciones-deployment
 ```bash
 cd capacitaciones-deployment/Docker/
 ```
-- Renombrar el archivo .env.example a .env y agregar en la variable de entorno GITHUB_TOKEN,  el Personal Access Token de Github correspondiente al usuario con privilegios para clonar los respositorios citiaps/capacitaciones-back-go y citiaps/capacitaciones-front-nuxt. Para ver instrucciones de como generar un Personal Access Token en Github, haga click [aquí](https://docs.github.com/es/enterprise-server@3.7/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+- Renombrar el archivo .env.example a .env y agregar en la variable de entorno GITHUB_TOKEN,  el Personal Access Token de Github correspondiente al usuario con privilegios para clonar los respositorios citiaps/capacitaciones-back-go y citiaps/capacitaciones-front-nuxt. 
+Para ver instrucciones de como generar un Personal Access Token en Github, haga click [aquí](https://docs.github.com/es/enterprise-server@3.7/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
 - Ejectar el siguiente comando docker:
 ```bash
