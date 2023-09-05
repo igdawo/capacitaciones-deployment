@@ -27,7 +27,7 @@ services:
       context: ../Config/Backend
       dockerfile: Dockerfile
       args:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: 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
         BRANCH: fmiranda-postgresql
     env_file:
       - ../Config/Backend/.env
@@ -41,7 +41,7 @@ services:
       context: ../Config/Frontend
       dockerfile: Dockerfile
       args:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: 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
         BRANCH: fmiranda
     environment:
       - HOST=0.0.0.0
