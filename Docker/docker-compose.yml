@@ -19,7 +19,7 @@ services:
       context: ../Config/Backend/
       dockerfile: Dockerfile
       args:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
         BRANCH: asalinas-postgresql
     ports: 
       - 3001:3001
@@ -35,7 +35,7 @@ services:
       context: ../Config/Frontend/ 
       dockerfile: Dockerfile
       args:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
         BRANCH: asalinas
         BACK_URL: http://backend:3001
         BROWSER_BASE_URL: http://localhost:3001
