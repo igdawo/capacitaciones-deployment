@@ -9,7 +9,7 @@ RUN git clone -b ${BRANCH} https://${GITHUB_TOKEN}@github.com/citiaps/capacitaci
 # pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
 
 RUN go mod download 
-
+RUN go get github.com/gin-gonic/gin/binding@v1.8.2
 
 RUN go build -o main .
 
