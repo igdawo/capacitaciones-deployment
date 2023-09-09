@@ -2,21 +2,19 @@ version: '3.8'
 
 services:
   db:
+    container_name: postgresql-db
     image: postgres:latest
     ports:
       - 5432:5432
     env_file:
       - ../Databases/Postgresql/.env.docker
-    healthcheck:
-      test: pg_isready -U alan -d veterinaria_citiaps
-      interval: 10s
-      timeout: 3s
-      retries: 3
     volumes:
       - postgresql-data3:/var/lib/postgresql-data3
+      - ../Databases/Postgresql/veterinaria_citiaps.sql:/docker-entrypoint-initdb.d/veterinaria_citiaps.sql
     networks:
       - red1
   api:
+    container_name: capacitacion-backend-go
     build:
       context: .
       dockerfile: ../Config/Backend/Dockerfile
@@ -24,12 +22,11 @@ services:
       - 3001:3001
     env_file:
       - ../Config/Backend/.env.docker
-    depends_on:
-      db:
-        condition: service_healthy
+    depends_on: db
     networks:
       - red1
   front:
+    container_name: capacitacion-frontend-nuxt
     build:
       context: .
       dockerfile: ../Config/Frontend/Dockerfile
@@ -37,14 +34,12 @@ services:
       - 3000:3000
     env_file:
       - ../Config/Frontend/.env.docker
-    depends_on:
-      db:
-        condition: service_healthy
+    depends_on: db
     networks:
       - red1
 networks:
   red1:
     name: red1
-    external: true
+    driver: bridge
 volumes:
   postgresql-data3:
