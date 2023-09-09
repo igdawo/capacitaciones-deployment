@@ -1,1 +1,4 @@
 .idea
+.env
+Config/Backend/.env.docker
+Config/Frontend/.env.docker
