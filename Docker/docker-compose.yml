@@ -2,12 +2,12 @@ version: '3.8'
 
 services:
   db:
+    env_file:
+      - ../Databases/Postgresql/.env.docker
     container_name: postgresql-db
     image: postgres:latest
     ports:
       - 5432:5432
-    env_file:
-      - ../Databases/Postgresql/.env.docker
     volumes:
       - postgresql-data3:/var/lib/postgresql-data3
       - ../Databases/Postgresql/veterinaria_citiaps.sql:/docker-entrypoint-initdb.d/veterinaria_citiaps.sql
@@ -16,25 +16,33 @@ services:
   api:
     container_name: capacitacion-backend-go
     build:
-      context: .
-      dockerfile: ../Config/Backend/Dockerfile
-    ports:
-      - 3001:3001
+      context: ../Config/Backend
+      dockerfile: Dockerfile
+      args:
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+        BRANCH_BACK: ${BRANCH_BACK}
     env_file:
       - ../Config/Backend/.env.docker
-    depends_on: db
+    ports:
+      - 3001:3001
+    depends_on:
+      - db
     networks:
       - red1
   front:
     container_name: capacitacion-frontend-nuxt
     build:
-      context: .
-      dockerfile: ../Config/Frontend/Dockerfile
+      context: ../Config/Frontend
+      dockerfile: Dockerfile
+      args:
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+        BRANCH_FRONT: ${BRANCH_FRONT}
     ports:
       - 3000:3000
     env_file:
       - ../Config/Frontend/.env.docker
-    depends_on: db
+    depends_on:
+      - api
     networks:
       - red1
 networks:

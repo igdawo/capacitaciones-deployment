@@ -1,8 +1,11 @@
-FROM acurilem/backend-veterinaria:latest
+FROM golang
 
 WORKDIR /app
 
+ARG BRANCH_BACK
+ARG GITHUB_TOKEN
+RUN git clone -b ${BRANCH_BACK} https://${GITHUB_TOKEN}@github.com/citiaps/capacitaciones-back-go.git /app
+
 RUN go build -o main ./main.go
 
-EXPOSE 3001
 CMD [ "/app/main" ]
