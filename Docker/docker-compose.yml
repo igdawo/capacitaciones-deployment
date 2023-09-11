@@ -12,6 +12,8 @@ services:
       - ../Databases/Postgresql/.env
     volumes:
       - postgresql-data:/var/lib/postgresql-data
+    networks:
+      - red1
   # mongo:
   #   build:
   #     context: ../Databases/Mongodb
@@ -27,7 +29,7 @@ services:
       context: ../Config/Backend
       dockerfile: Dockerfile
       args:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: <GITHUB_TOKEN>
         BRANCH: fmiranda-postgresql
     env_file:
       - ../Config/Backend/.env
@@ -36,20 +38,26 @@ services:
     depends_on:
       - db
       #  - mongo
+    networks:
+      - red1
   front:
     build:
       context: ../Config/Frontend
       dockerfile: Dockerfile
       args:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: <GITHUB_TOKEN>
         BRANCH: fmiranda
     environment:
+      - NUXT_HOST: 0.0.0.0
       - HOST=0.0.0.0
       - BACK_URL=http://api:3001
+      - BROWSER_BASE_URL=http://localhost:3001,
     ports:
       - 3000:3000
     depends_on:
       - api
+    networks:
+      - red1
 volumes:
   postgresql-data:
   # mongodb-data:

@@ -16,6 +16,32 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+--
+-- Name: make_serial(text, text, text); Type: FUNCTION; Schema: public; Owner: veterinaria
+--
+
+CREATE FUNCTION public.make_serial(p_table_schema text, p_table_name text, p_column_name text) RETURNS void
+    LANGUAGE plpgsql
+    AS $$
+declare
+  l_sql text;
+  l_seq_name text;
+  l_full_name text;
+begin
+  l_seq_name := concat(p_table_name, '_', p_column_name, '_seq');
+  l_full_name := quote_ident(p_table_schema)||'.'||quote_ident(l_seq_name);
+  
+  execute format('create sequence %I.%I', p_table_schema, l_seq_name);
+  execute format('alter table %I.%I alter column %I set default nextval(%L)', p_table_schema, p_table_name, p_column_name, l_seq_name);
+  execute format('alter table %I.%I alter column %I set not null', p_table_schema, p_table_name, p_column_name);
+  execute format('alter sequence %I.%I owned by %I.%I', p_table_schema, l_seq_name, p_table_name, p_column_name);
+  execute format('select setval(%L, coalesce(max(%I),0)) from %I', l_full_name, p_column_name, p_table_name);
+end;
+$$;
+
+
+ALTER FUNCTION public.make_serial(p_table_schema text, p_table_name text, p_column_name text) OWNER TO veterinaria;
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -105,6 +131,33 @@ ALTER TABLE public.duenos OWNER TO postgres;
 
 ALTER TABLE public.duenos ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
     SEQUENCE NAME public.duenos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: imagenes; Type: TABLE; Schema: public; Owner: veterinaria
+--
+
+CREATE TABLE public.imagenes (
+    id integer NOT NULL,
+    perro_id integer NOT NULL,
+    url character varying(255)
+);
+
+
+ALTER TABLE public.imagenes OWNER TO veterinaria;
+
+--
+-- Name: imagenes_id_seq; Type: SEQUENCE; Schema: public; Owner: veterinaria
+--
+
+ALTER TABLE public.imagenes ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.imagenes_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -263,6 +316,15 @@ COPY public.duenos (id, nombre, edad, sexo) FROM stdin;
 
 
 --
+-- Data for Name: imagenes; Type: TABLE DATA; Schema: public; Owner: veterinaria
+--
+
+COPY public.imagenes (id, perro_id, url) FROM stdin;
+5	1	/test/
+\.
+
+
+--
 -- Data for Name: perros; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -318,7 +380,14 @@ SELECT pg_catalog.setval('public.cats_id_seq', 1, true);
 -- Name: duenos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.duenos_id_seq', 7, true);
+SELECT pg_catalog.setval('public.duenos_id_seq', 3, true);
+
+
+--
+-- Name: imagenes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: veterinaria
+--
+
+SELECT pg_catalog.setval('public.imagenes_id_seq', 5, true);
 
 
 --
@@ -380,6 +449,14 @@ ALTER TABLE ONLY public.vacunas
 
 ALTER TABLE ONLY public.cats
     ADD CONSTRAINT cats_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: imagenes imagenes_pkey; Type: CONSTRAINT; Schema: public; Owner: veterinaria
+--
+
+ALTER TABLE ONLY public.imagenes
+    ADD CONSTRAINT imagenes_pkey PRIMARY KEY (id);
 
 
 --
@@ -451,6 +528,14 @@ ALTER TABLE ONLY public."Perro_Vacunas"
 
 ALTER TABLE ONLY public."Dueno_Perros"
     ADD CONSTRAINT perro_id_foreign FOREIGN KEY ("Perro_id") REFERENCES public.perros(id) NOT VALID;
+
+
+--
+-- Name: imagenes perro_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: veterinaria
+--
+
+ALTER TABLE ONLY public.imagenes
+    ADD CONSTRAINT perro_id_foreign FOREIGN KEY (perro_id) REFERENCES public.perros(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --

@@ -2,7 +2,7 @@ FROM node:16
 
 # Establecer variables de entorno
 ARG GITHUB_TOKEN
-ARG BRANCH=fmiranda
+ARG BRANCH
 
 # Clonar el repositorio y la rama específica
 RUN git clone -b ${BRANCH} https://${GITHUB_TOKEN}@github.com/citiaps/capacitaciones-front-nuxt.git /app
@@ -22,4 +22,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Comando para iniciar la aplicación
-CMD ["npm", "run", "dev"]
+CMD ["yarn", "dev"]
