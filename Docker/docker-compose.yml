@@ -29,7 +29,7 @@ services:
       context: ../Config/Backend
       dockerfile: Dockerfile
       args:
-        GITHUB_TOKEN: <GITHUB_TOKEN>
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
         BRANCH: fmiranda-postgresql
     env_file:
       - ../Config/Backend/.env
@@ -45,10 +45,9 @@ services:
       context: ../Config/Frontend
       dockerfile: Dockerfile
       args:
-        GITHUB_TOKEN: <GITHUB_TOKEN>
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
         BRANCH: fmiranda
     environment:
-      - NUXT_HOST=0.0.0.0
       - HOST=0.0.0.0
       - BACK_URL=http://api:3001
       - BROWSER_BASE_URL=http://localhost:3001
@@ -61,7 +60,6 @@ services:
 volumes:
   postgresql-data:
   # mongodb-data:
-
 networks:
   red1:
     name: red1
