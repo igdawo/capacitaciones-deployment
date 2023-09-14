@@ -41,7 +41,7 @@ services:
     networks:
       - red1
     volumes:
-          - perros-imagenes:/uploads
+          - perros-imagenes:/app/uploads
   front:
     build:
       context: ../Config/Frontend
