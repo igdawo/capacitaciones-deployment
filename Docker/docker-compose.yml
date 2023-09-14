@@ -42,21 +42,21 @@ services:
     networks:
       - tareanet
     volumes:
-      - ../../capacitaciones-back-go/uploads:/app/uploads
+      - ../capacitaciones-back-go/uploads:/app/uploads
   front:
     build:
       context: ../Config/Frontend
       args:
         BRANCH: asantana
         GITHUB_TOKEN: ${GITHUB_TOKEN}
-        BACK_URL: http://localhost:8000
+        BACK_URL: ${BACK_URL}
     container_name: front
     ports:
       - "3000:3000"
     depends_on:
       - back
     environment:
-      - BACK_URL=http://localhost:8000
+      - BACK_URL=${BACK_URL}
     networks:
       - tareanet
 networks:

@@ -4,9 +4,8 @@ WORKDIR /usr/src/app
 ARG GITHUB_TOKEN
 ARG BRANCH
 RUN git clone -b ${BRANCH} https://${GITHUB_TOKEN}@github.com/citiaps/capacitaciones-front-nuxt.git /usr/src/app
-#RUN git clone -b ${BRANCH} https://github.com/citiaps/capacitaciones-front-nuxt.git /usr/src/app
-RUN mv .env.example .env
-#COPY package*.json ./
+#RUN mv .env.example .env
+
 
 RUN npm install
 
