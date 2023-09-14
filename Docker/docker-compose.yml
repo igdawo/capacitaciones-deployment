@@ -27,6 +27,8 @@ services:
       - 3001:3001
     depends_on:
       - db
+    volumes:
+        - imagenes-data:/app/imagenes
     networks:
       - red1
   front:
@@ -51,3 +53,4 @@ networks:
     driver: bridge
 volumes:
   postgresql-data3:
+  imagenes-data:
