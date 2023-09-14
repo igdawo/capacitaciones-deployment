@@ -13,4 +13,5 @@ RUN apt install vim -y
 RUN apt install iputils-ping -y
 
 ENV HOST 0.0.0.0
-CMD [ "yarn", "dev" ]
+CMD [ "yarn", "build" ]
+CMD [ "yarn", "start" ]
