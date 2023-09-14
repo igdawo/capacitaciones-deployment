@@ -40,6 +40,8 @@ services:
       #  - mongo
     networks:
       - red1
+    volumes:
+          - perros-imagenes:/uploads
   front:
     build:
       context: ../Config/Frontend
@@ -59,6 +61,7 @@ services:
       - red1
 volumes:
   postgresql-data:
+  perros-imagenes:
   # mongodb-data:
 networks:
   red1:
