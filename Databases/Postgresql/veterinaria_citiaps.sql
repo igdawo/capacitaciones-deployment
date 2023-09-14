@@ -17,7 +17,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: make_serial(text, text, text); Type: FUNCTION; Schema: public; Owner: veterinaria
+-- Name: make_serial(text, text, text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.make_serial(p_table_schema text, p_table_name text, p_column_name text) RETURNS void
@@ -40,7 +40,7 @@ end;
 $$;
 
 
-ALTER FUNCTION public.make_serial(p_table_schema text, p_table_name text, p_column_name text) OWNER TO veterinaria;
+ALTER FUNCTION public.make_serial(p_table_schema text, p_table_name text, p_column_name text) OWNER TO postgres;
 
 SET default_tablespace = '';
 
@@ -140,30 +140,38 @@ ALTER TABLE public.duenos ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- Name: imagenes; Type: TABLE; Schema: public; Owner: veterinaria
+-- Name: imagenes; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.imagenes (
     id integer NOT NULL,
-    perro_id integer NOT NULL,
-    url character varying(255)
+    perro_id integer,
+    url text
 );
 
 
-ALTER TABLE public.imagenes OWNER TO veterinaria;
+ALTER TABLE public.imagenes OWNER TO postgres;
 
 --
--- Name: imagenes_id_seq; Type: SEQUENCE; Schema: public; Owner: veterinaria
+-- Name: imagenes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-ALTER TABLE public.imagenes ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME public.imagenes_id_seq
+CREATE SEQUENCE public.imagenes_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
-    CACHE 1
-);
+    CACHE 1;
+
+
+ALTER TABLE public.imagenes_id_seq OWNER TO postgres;
+
+--
+-- Name: imagenes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.imagenes_id_seq OWNED BY public.imagenes.id;
 
 
 --
@@ -274,6 +282,13 @@ ALTER TABLE ONLY public.cats ALTER COLUMN id SET DEFAULT nextval('public.cats_id
 
 
 --
+-- Name: imagenes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.imagenes ALTER COLUMN id SET DEFAULT nextval('public.imagenes_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -316,11 +331,10 @@ COPY public.duenos (id, nombre, edad, sexo) FROM stdin;
 
 
 --
--- Data for Name: imagenes; Type: TABLE DATA; Schema: public; Owner: veterinaria
+-- Data for Name: imagenes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.imagenes (id, perro_id, url) FROM stdin;
-5	1	/test/
 \.
 
 
@@ -384,10 +398,10 @@ SELECT pg_catalog.setval('public.duenos_id_seq', 3, true);
 
 
 --
--- Name: imagenes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: veterinaria
+-- Name: imagenes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.imagenes_id_seq', 5, true);
+SELECT pg_catalog.setval('public.imagenes_id_seq', 1, false);
 
 
 --
@@ -452,7 +466,7 @@ ALTER TABLE ONLY public.cats
 
 
 --
--- Name: imagenes imagenes_pkey; Type: CONSTRAINT; Schema: public; Owner: veterinaria
+-- Name: imagenes imagenes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.imagenes
@@ -507,11 +521,19 @@ ALTER TABLE ONLY public."Dueno_Perros"
 
 
 --
+-- Name: imagenes imagenes_perro_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.imagenes
+    ADD CONSTRAINT imagenes_perro_id_fkey FOREIGN KEY (perro_id) REFERENCES public.perros(id);
+
+
+--
 -- Name: vacunas perro_id_FK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.vacunas
-    ADD CONSTRAINT "perro_id_FK" FOREIGN KEY (perro_id) REFERENCES public.duenos(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT "perro_id_FK" FOREIGN KEY (perro_id) REFERENCES public.perros(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -528,14 +550,6 @@ ALTER TABLE ONLY public."Perro_Vacunas"
 
 ALTER TABLE ONLY public."Dueno_Perros"
     ADD CONSTRAINT perro_id_foreign FOREIGN KEY ("Perro_id") REFERENCES public.perros(id) NOT VALID;
-
-
---
--- Name: imagenes perro_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: veterinaria
---
-
-ALTER TABLE ONLY public.imagenes
-    ADD CONSTRAINT perro_id_foreign FOREIGN KEY (perro_id) REFERENCES public.perros(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
