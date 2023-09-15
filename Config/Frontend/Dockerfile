@@ -1,17 +1,20 @@
-FROM node:lts
+FROM node:16.10.0-alpine
 
 WORKDIR /app
+
+RUN apk update && apk upgrade
+RUN apk add git
 
 ARG BRANCH_FRONT
 ARG GITHUB_TOKEN
 RUN git clone -b ${BRANCH_FRONT} https://${GITHUB_TOKEN}@github.com/citiaps/capacitaciones-front-nuxt.git /app
 
 RUN npm install
+RUN npm run build
 
-RUN apt update
-RUN apt install vim -y
-RUN apt install iputils-ping -y
+RUN apk add vim
+RUN apk add iputils
 
-ENV HOST 0.0.0.0
-CMD [ "yarn", "build" ]
+ENV NUXT_HOST=0.0.0.0
+ENV NUXT_PORT=3000
 CMD [ "yarn", "start" ]
