@@ -8,6 +8,7 @@ RUN apk add git
 ARG BRANCH_FRONT
 ARG GITHUB_TOKEN
 RUN git clone -b ${BRANCH_FRONT} https://${GITHUB_TOKEN}@github.com/citiaps/capacitaciones-front-nuxt.git /app
+COPY .env.docker .env
 
 RUN npm install
 RUN npm run build

@@ -31,10 +31,10 @@ En Config/Backend/.env.docker se deben setear las siguiente variables de entorno
 	DB_DB: nombre de la base de datos mongodb.
 	DB_URL: direccion ip de base de datos mongodb
 	JWT_KEY: token unico para el consumo seguro de apis desde el backend.
-	CORS_URLS: dominios que tienen permitido usar la api
+	CORS_URLS: dominios permitidos para el consumo de apis, debe agregarse el dominio del frontend
 
 En Config/Frontend/.env.docker se deben setear las siguiente variables de entorno
-	backUrl se debe colocar la url del backend (por ejemplo http://localhost:3001/)
+	BACK_URL se debe colocar la url del backend (por ejemplo http://localhost:3001/)
 
 En .env
 	BRANCH_BACK: nombre de la rama del repositorio a clonar desde https://github.com/citiaps/capacitaciones-back-go.git

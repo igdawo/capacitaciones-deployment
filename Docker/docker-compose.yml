@@ -43,8 +43,6 @@ services:
       - 3000:3000
     env_file:
       - ../Config/Frontend/.env.docker
-    environment:
-      - BACK_URL=${BACK_URL}
     depends_on:
       - api
     networks:
