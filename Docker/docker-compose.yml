@@ -27,6 +27,7 @@ services:
       - 3001:3001
     depends_on:
       - db
+    restart: on-failure
     volumes:
         - imagenes-data:/app/imagenes
     networks:
