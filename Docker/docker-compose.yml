@@ -1,0 +1,25 @@
+version: '3'
+services:
+  database_postgres:
+    image: postgres_image
+    networks:
+      - red_capacitacion
+
+  backend:
+    image: backend_image
+    networks:
+      - red_capacitacion
+    ports:
+      - 8080:8080
+
+  frontend:
+    image: frontend_image
+    networks:
+      - red_capacitacion
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+
+networks:
+  red_capacitacion:

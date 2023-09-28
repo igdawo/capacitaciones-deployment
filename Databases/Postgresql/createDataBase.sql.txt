@@ -1,0 +1,46 @@
+DROP TABLE IF EXISTS Perro CASCADE;
+DROP TABLE IF EXISTS Dueno CASCADE;
+DROP TABLE IF EXISTS Vacuna CASCADE;
+
+CREATE TABLE Perro (
+  	"id" serial,
+	"id_dueno" integer, --foranea
+  	"Nombre" varchar(80),
+  	"Raza" varchar(80),
+  	"Color" varchar(80),
+  	"Edad" integer,
+  PRIMARY KEY ("id")
+);
+ALTER TABLE Perro OWNER TO postgres;
+
+CREATE TABLE Dueno (
+  	"id" serial,
+  	"Nombre" varchar(80),
+  	"Edad" integer,
+	"Sexo" varchar(80),
+  PRIMARY KEY ("id")
+);
+ALTER TABLE Dueno OWNER TO postgres;
+
+CREATE TABLE Vacuna (
+  	"id" serial,
+	"id_perro" integer, --foranea
+  	"Fecha" date,
+  	"NombreVacuna" varchar(80),
+  PRIMARY KEY ("id")
+);
+ALTER TABLE Vacuna OWNER TO postgres;
+
+
+ALTER TABLE ONLY Perro
+ADD CONSTRAINT perro_fk
+FOREIGN KEY ("id_dueno")
+REFERENCES Dueno("id")
+ON DELETE CASCADE;
+
+ALTER TABLE ONLY Vacuna
+ADD CONSTRAINT vacuna_fk
+FOREIGN KEY ("id_perro")
+REFERENCES Perro("id")
+ON DELETE CASCADE;
+

@@ -1,0 +1,20 @@
+#utilizar este comando para construir la imagen
+# docker build -t postgres_image .
+
+# Utiliza una imagen oficial de PostgreSQL como base
+FROM postgres:latest
+
+
+# Copia el archivo de respaldo que esta en la carpeta databases/Postgre
+# Los archivos en esta carpeta se ejecutarán al iniciar el contenedor
+COPY backup2.sql /docker-entrypoint-initdb.d/
+
+# Variables de entorno para la configuración de PostgreSQL
+ENV POSTGRES_USER postgres
+ENV POSTGRES_PASSWORD admin
+ENV POSTGRES_DB veterinaria_citiaps
+
+# Opcionalmente, puedes configurar otros parámetros de PostgreSQL aquí
+
+# Puerto en el que se ejecutará PostgreSQL (por defecto es 5432)
+EXPOSE 5432
