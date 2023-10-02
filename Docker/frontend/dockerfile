@@ -1,0 +1,23 @@
+# utilizar este comando para construir la imagen
+# docker build -t frontend_image .
+
+# Utiliza una imagen de Node.js como base
+FROM node:14
+
+# Establece el directorio de trabajo en /app
+WORKDIR /app
+
+# Copia el archivo package.json y package-lock.json (si existe)
+COPY package*.json ./
+
+# Instala las dependencias del proyecto
+RUN npm install
+
+# Copia el resto de los archivos de la aplicación
+COPY . .
+
+# Compila la aplicación (ajusta el comando según sea necesario)
+RUN npm run build
+
+# Define el comando de inicio de la aplicación
+CMD ["npm", "start"]

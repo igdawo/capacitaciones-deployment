@@ -1,0 +1,23 @@
+#utilizar este comando para construir la imagen
+# docker build -t mongodb_image .
+
+# Utiliza la imagen oficial de MongoDB como base
+FROM mongo:7.0.0
+
+ENV MONGO_INITDB_ROOT_USERNAME=admin
+ENV MONGO_INITDB_ROOT_PASSWORD=admin
+ENV MONGO_INITDB_DATABASE=veterinaria_citiaps
+
+# Copia los archivos BSON y el archivo metadata.json al directorio /tmp en el contenedor
+COPY /veterinaria_citiaps_backup/*.bson /tmp/
+COPY /veterinaria_citiaps_backup/*.json /tmp/
+
+# Restaura la base de datos desde los archivos BSON y el archivo metadata.json
+# Ajusta el nombre de la base de datos según tus necesidades
+CMD mongod --fork --logpath /var/log/mongodb.log; \
+    mongorestore /tmp/dump/; \
+    mongod --shutdown; \
+    docker-entrypoint.sh mongod
+
+# Puerto en el que se ejecutará MongoDB (por defecto es 27017)
+EXPOSE 27017

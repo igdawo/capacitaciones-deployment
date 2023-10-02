@@ -5,6 +5,13 @@ services:
     networks:
       - red_capacitacion
 
+  database_mongodb:
+    image: mongodb_image
+    networks:
+      - red_capacitacion
+    ports:
+      - 27017:27017
+
   backend:
     image: backend_image
     networks:

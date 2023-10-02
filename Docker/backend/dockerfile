@@ -1,0 +1,20 @@
+#utilizar este comando para construir la imagen
+# docker build -t backend_image .
+
+# Utiliza la imagen oficial de Golang como base
+FROM golang:1.21.1
+
+#Se expone puerto donde se ejecuta
+EXPOSE 8080
+
+# Establece el directorio de trabajo en la raíz del proyecto
+WORKDIR /app
+
+# Copia todos los archivos del proyecto al contenedor
+COPY . .
+
+# Compila el código de Go en un binario ejecutable
+RUN go build -o main .
+
+# Comando para ejecutar la aplicación al iniciar el contenedor
+CMD ["./main"]
