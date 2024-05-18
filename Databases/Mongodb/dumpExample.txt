@@ -1,0 +1,29 @@
+use veterinaria_citiaps
+
+db.createCollection("Dueño")
+db.createCollection("Perro")
+db.createCollection("Vacuna")
+
+db.Dueño.insertMany([
+	{_id:1, nombre: "Pedro", edad:25, sexo:"Masculino"},
+	{_id:2, nombre: "Juan", edad:30, sexo:"Masculino"},
+	{_id:3, nombre: "Daniella", edad:19, sexo:"Femenino"},
+	{_id:4, nombre: "Sofia", edad:23, sexo:"Femenino"},
+	{_id:5, nombre: "Jesus", edad:32, sexo:"Otro"}
+	])
+
+db.Perro.insertMany([
+  { _id: 1, nombre: "Firulais", raza: "Quiltro", color: "Cafe claro", edad: 9, id_dueño: 1 },
+  { _id: 2, nombre: "Mopa", raza: "Poodle", color: "Blanco", edad: 7, id_dueño: 2 },
+  { _id: 3, nombre: "Muñeca", raza: "Quiltro", color: "Blanco", edad: 12, id_dueño: 3 },
+  { _id: 4, nombre: "Micky", raza: "Yorkshaire Terrier", color: "Cafe oscuro", edad: 5, id_dueño: 4 },
+  { _id: 5, nombre: "Javi", raza: "Pastor aleman", color: "Cafe claro", edad: 2, id_dueño: 5 }
+]);
+
+db.Vacuna.insertMany([
+  { fecha: "2021-02-10", nombrevacuna: "Octuple", id_perro: 1 },
+  { fecha: "2012-01-09", nombrevacuna: "Rabica", id_perro: 2 },
+  { fecha: "2005-07-18", nombrevacuna: "Sextuple", id_perro: 3 },
+  { fecha: "2023-11-18", nombrevacuna: "Influenza", id_perro: 4 },
+  { fecha: "2012-12-12", nombrevacuna: "Octuple", id_perro: 5 }
+]);
