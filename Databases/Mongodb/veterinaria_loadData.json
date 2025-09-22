@@ -1,0 +1,88 @@
+[
+  {
+    "nombre": "Carlos",
+    "edad": 45,
+    "sexo": "Masculino",
+    "perros": [
+      {
+        "nombre": "Fido",
+        "raza": "Labrador",
+        "color": "Negro",
+        "edad": 5,
+        "vacunas": [
+          { "nombreVacuna": "Rabia", "fecha": "2023-05-01", "tipo": true },
+          { "nombreVacuna": "Parvovirus", "fecha": "2023-06-15", "tipo": false }
+        ]
+      }
+    ]
+  },
+  {
+    "nombre": "Laura",
+    "edad": 32,
+    "sexo": "Femenino",
+    "perros": [
+      {
+        "nombre": "Luna",
+        "raza": "Poodle",
+        "color": "Blanco",
+        "edad": 3,
+        "vacunas": []
+      },
+      {
+        "nombre": "Max",
+        "raza": "Bulldog",
+        "color": "Marrón",
+        "edad": 6,
+        "vacunas": [
+          { "nombreVacuna": "Moquillo", "fecha": "2024-01-10", "tipo": true }
+        ]
+      }
+    ]
+  },
+  {
+    "nombre": "Andrés",
+    "edad": 28,
+    "sexo": "Masculino",
+    "perros": []
+  },
+  {
+    "nombre": "María",
+    "edad": 38,
+    "sexo": "Femenino",
+    "perros": [
+      {
+        "nombre": "Rocky",
+        "raza": "Pastor Alemán",
+        "color": "Negro y Fuego",
+        "edad": 4,
+        "vacunas": [
+          { "nombreVacuna": "Rabia", "fecha": "2022-08-20", "tipo": true },
+          { "nombreVacuna": "Leptospirosis", "fecha": "2023-08-20", "tipo": false }
+        ]
+      }
+    ]
+  },
+  {
+    "nombre": "Sofía",
+    "edad": 50,
+    "sexo": "Femenino",
+    "perros": [
+      {
+        "nombre": "Toby",
+        "raza": "Beagle",
+        "color": "Tricolor",
+        "edad": 2,
+        "vacunas": [
+          { "nombreVacuna": "Rabia", "fecha": "2024-05-01", "tipo": true }
+        ]
+      },
+      {
+        "nombre": "Bella",
+        "raza": "Golden Retriever",
+        "color": "Dorado",
+        "edad": 1,
+        "vacunas": []
+      }
+    ]
+  }
+]
